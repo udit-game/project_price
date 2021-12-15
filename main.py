@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup
 import requests
 import smtplib
 import os
+import envutils
+
+
 
 def search(entered_string):
     all_data = dict()
@@ -178,5 +181,5 @@ def info():
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0')
 
