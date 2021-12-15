@@ -6,3 +6,4 @@ bs4
 requests
 Jinja2
 gunicorn==20.0.4
+lxml
