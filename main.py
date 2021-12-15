@@ -118,8 +118,8 @@ def search(entered_string):
                 count += 1
         all_data["flipkart"] = flipkart_data
         return all_data
-    except:
-        return 'Not Found'
+    except Exception as e:
+        return [e, 'Not Found']
 
 
 
@@ -149,9 +149,10 @@ def item_search():
     found = True
     if request.method=="POST":
         table = search(item)
-        if table=='Not Found':
+        if table[1]=='Not Found':
             found=False
-    return render_template("index.html", table=table, searched=True, found=found)
+            error = table[0]
+    return render_template("index.html", table=table, searched=True, found=found, error=error)
 
 
 
