@@ -7,7 +7,6 @@ from wtforms import TextAreaField
 from bs4 import BeautifulSoup
 import requests
 import smtplib
-import os
 
 
 
@@ -166,7 +165,7 @@ def contact():
         number = request.form["number"]
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
-            connection.login("uditsmss@gmail.com", os.environ["PASSWORD"])
+            connection.login("uditsmss@gmail.com", "ankitsaha007")
             connection.sendmail(from_addr="uditsmss@gmail.com", to_addrs="uditeeiot@gmail.com", msg=f"\nfrom {name}, email:{email}, number:{number}\n{messege}")
         return render_template("contact.html", sent=True)
     return render_template("contact.html", sent=False)
