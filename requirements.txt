@@ -1,0 +1,8 @@
+flask
+flask_bootstrap
+flask_ckeditor
+wtforms
+bs4
+requests
+Jinja2
+gunicorn==20.0.4
