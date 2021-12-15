@@ -1,0 +1,37 @@
+th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+.p-5 {
+    padding: 2rem!important;
+}
+.name {
+    text-align: center;
+    vertical-align: middle;
+}
+.prize {
+    text-align: center;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+img {
+    text-align: center;
+    vertical-align: middle;
+}
+a:hover {
+    text-decoration: none;
+    color:#00A0C6;
+    cursor:pointer;
+}
+
+
+
+th:hover {
+    border-bottom: solid;
+    font-weight: bold;
+    color: #00A0C6;
+}
+
+

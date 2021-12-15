@@ -1,0 +1,63 @@
+{% include "header.html" %}
+
+<section class="text-gray-600 body-font">
+  <form action="/search" method="POST">
+  <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center" style="padding-bottom: 3rem;">
+    <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
+      <div class="flex w-full justify-center items-end">
+        <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
+          <label for="hero-field" class="leading-7 text-sm text-gray-600">Price Comparison</label>
+          <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+        </div>
+        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</section>
+
+{% if found %}
+{% if searched %}
+<center>
+  <table class="table table-sm" style="width:80%">
+    <thead>
+    <tr>
+      <th scope="col" width="2px" style="font-size:1.5rem;">Company</th>
+      <th scope="col" width="30%" style="text-align:left; font-size:1.5rem;">ProductImage</th>
+      <th scope="col" width="30%" style="text-align:center; font-size:1.5rem;">Name</th>
+      <th scope="col" width="30%" style="text-align:center; font-size:1.5rem;">Prize</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for company in table["amazon"].values() %}
+    <tr>
+      <th scope="col"><a href="{{company['source_link']}}"><img src="static/amazonlogo.jpeg"></a></th>
+      <th scope="col" class="product" align="center"><a href="{{company['source_link']}}"><img src="{{ company['image_link'] }}" style="max-height:250px;"></a></th>
+      <th scope="col" class="name"><a href="{{company['source_link']}}" style="margin-top:2000px;">{{ company['name'] }}</a></th>
+      <th scope="col" class="prize"><a href="{{company['source_link']}}">{{ company["price"] }}</a></th>
+    </tr>
+  {%endfor%}
+  {% for company in table["snapdeal"].values() %}
+    <tr>
+      <th scope="col"><a href="{{company['link']}}"><img src="static/snapdeallogo.jpeg"></a></th>
+      <th scope="col" class="product" align="center"><a href="{{company['link']}}"><img src="{{ company.imagelink }}" style="max-height:250px;"></a></th>
+      <th scope="col" class="name"><a href="{{company['link']}}">{{ company['name'] }}</a></th>
+      <th scope="col" class="prize"><a href="{{company['link']}}">{{ company["price"] }}</a></th>
+    </tr>
+  {%endfor%}
+  {% for company in table["flipkart"].values() %}
+    <tr>
+      <th scope="col"><a href="{{company['source_link']}}"><img src="static/flipkartlogo.png"></a></th>
+      <th scope="col" class="product" align="center"><a href="{{company['source_link']}}"><img src="{{ company['image_link'] }}" style="max-height:250px;"></a></th>
+      <th scope="col" class="name"><a href="{{company['source_link']}}">{{ company['name'] }}</a></th>
+      <th scope="col" class="prize"><a href="{{company['source_link']}}">{{ company["price"] }}</a></th>
+    </tr>
+  {%endfor%}
+  </tbody>
+  </table>
+</center>
+{%endif%}
+{% else  %}
+<p style="text-align:center; color:red;">Result not found</p>
+{%endif%}
+{% include "footer.html" %}
