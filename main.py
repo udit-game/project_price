@@ -125,7 +125,8 @@ def search(entered_string):
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+with open("secrets.txt", "r") as f:
+    app.config['SECRET_KEY'] = f.read().split("\n")[1].split(" ")[1]
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
