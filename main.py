@@ -158,17 +158,18 @@ def item_search():
 
 @app.route('/contact_us', methods=["POST", "GET"])
 def contact():
-    if request.method == "POST":
-        messege = request.form.get('ckeditor')
-        name = request.form["name"]
-        email = request.form["email"]
-        number = request.form["number"]
-        with smtplib.SMTP("smtp.gmail.com") as connection:
-            connection.starttls()
-            connection.login("uditsmss@gmail.com", "ankitsaha007")
-            connection.sendmail(from_addr="uditsmss@gmail.com", to_addrs="uditeeiot@gmail.com", msg=f"\nfrom {name}, email:{email}, number:{number}\n{messege}")
-        return render_template("contact.html", sent=True)
-    return render_template("contact.html", sent=False)
+    with open("secrets.txt") as file:
+        if request.method == "POST":
+            messege = request.form.get('ckeditor')
+            name = request.form["name"]
+            email = request.form["email"]
+            number = request.form["number"]
+            with smtplib.SMTP("smtp.gmail.com") as connection:
+                connection.starttls()
+                connection.login("uditsmss@gmail.com", file.read().split(" ")[1])
+                connection.sendmail(from_addr="uditsmss@gmail.com", to_addrs="uditeeiot@gmail.com", msg=f"\nfrom {name}, email:{email}, number:{number}\n{messege}")
+            return render_template("contact.html", sent=True)
+        return render_template("contact.html", sent=False)
 
 
 
@@ -179,5 +180,5 @@ def info():
 
 
 if __name__=="__main__":
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=False)
 
